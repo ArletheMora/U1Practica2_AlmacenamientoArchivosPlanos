@@ -1,19 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="20dp"
+    android:background="@drawable/e395d7f9658f0f95fb624503edb44098"
     tools:context=".ui.home.HomeFragment">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Citas"
-        android:textSize="30sp"
+        android:text="Registro de Citas"
+        android:textSize="40sp"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:id="@+id/lbltitulo"
         android:textAlignment="center"
         />
 
-</LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Paciente"
+        android:layout_below="@+id/lbltitulo"
+        android:textSize="30sp"
+        android:textColor="#000"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="40dp"
+        android:id="@+id/lblnombre"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre"
+        android:textSize="25sp"
+        android:layout_below="@+id/lbltitulo"
+        android:layout_toEndOf="@+id/lblnombre"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/txtnombre"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edad"
+        android:layout_below="@+id/lblnombre"
+        android:textSize="30sp"
+        android:textColor="#000"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="90dp"
+        android:id="@+id/lbledad"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Edad"
+        android:textSize="25sp"
+        android:layout_below="@+id/txtnombre"
+        android:layout_toEndOf="@+id/lbledad"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/txtedad"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Descripcion"
+        android:layout_below="@+id/lbledad"
+        android:textSize="30sp"
+        android:textColor="#000"
+        android:layout_marginTop="20dp"
+        android:id="@+id/lbldescripcion"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Descripcion"
+        android:textSize="25sp"
+        android:layout_below="@+id/txtedad"
+        android:layout_toEndOf="@+id/lbldescripcion"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/txtdescripcion"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Agregar"
+        android:textSize="10sp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/btn_uno"
+        android:textColor="@drawable/txt_btn_uno"
+        android:layout_below="@+id/txtdescripcion"
+        android:id="@+id/agregar"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Eliminar"
+        android:textSize="10sp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_uno"
+        android:textColor="@drawable/txt_btn_uno"
+        android:layout_below="@+id/agregar"
+        android:id="@+id/eliminar"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Actualizar"
+        android:textSize="10sp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_uno"
+        android:textColor="@drawable/txt_btn_uno"
+        android:layout_below="@+id/eliminar"
+        android:id="@+id/actualizar"/>
+
+
+</RelativeLayout>
