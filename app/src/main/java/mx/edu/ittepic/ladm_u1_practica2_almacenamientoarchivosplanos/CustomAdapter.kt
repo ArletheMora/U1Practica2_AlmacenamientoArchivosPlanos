@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import mx.edu.ittepic.ladm_u1_practica2_almacenamientoarchivosplanos.databinding.ActivityMainBinding
 import mx.edu.ittepic.ladm_u1_practica2_almacenamientoarchivosplanos.databinding.CardLayoutBinding
+import mx.edu.ittepic.ladm_u1_practica2_almacenamientoarchivosplanos.ui.home.HomeFragment
 import java.text.FieldPosition
 
  class CustomAdapter: RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
@@ -28,6 +29,7 @@ import java.text.FieldPosition
          holder.binding.itemTitle.text = titles[i]
          holder.binding.itemDetail.text = details[i]
          holder.binding.itemImage.setImageResource(images[i])
+
      }
 
      override fun getItemCount(): Int {

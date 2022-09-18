@@ -25,20 +25,20 @@
         android:layout_height="wrap_content"
         android:text="Paciente"
         android:layout_below="@+id/lbltitulo"
-        android:textSize="30sp"
+        android:textSize="22sp"
         android:textColor="#000"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="40dp"
+        android:layout_marginLeft="70dp"
         android:id="@+id/lblnombre"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nombre"
-        android:textSize="25sp"
+        android:textSize="22sp"
         android:layout_below="@+id/lbltitulo"
+        android:layout_marginTop="5dp"
         android:layout_toEndOf="@+id/lblnombre"
-        android:layout_marginTop="8dp"
         android:layout_marginLeft="10dp"
         android:id="@+id/txtnombre"/>
 
@@ -47,20 +47,20 @@
         android:layout_height="wrap_content"
         android:text="Edad"
         android:layout_below="@+id/lblnombre"
-        android:textSize="30sp"
+        android:textSize="22sp"
         android:textColor="#000"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="90dp"
+        android:layout_marginLeft="105dp"
         android:id="@+id/lbledad"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Edad"
-        android:textSize="25sp"
+        android:textSize="22sp"
         android:layout_below="@+id/txtnombre"
         android:layout_toEndOf="@+id/lbledad"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="2dp"
         android:layout_marginLeft="10dp"
         android:id="@+id/txtedad"/>
 
@@ -69,8 +69,9 @@
         android:layout_height="wrap_content"
         android:text="Descripcion"
         android:layout_below="@+id/lbledad"
-        android:textSize="30sp"
+        android:textSize="22sp"
         android:textColor="#000"
+        android:layout_marginLeft="40dp"
         android:layout_marginTop="20dp"
         android:id="@+id/lbldescripcion"/>
 
@@ -78,43 +79,86 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Descripcion"
-        android:textSize="25sp"
+        android:textSize="22sp"
         android:layout_below="@+id/txtedad"
         android:layout_toEndOf="@+id/lbldescripcion"
-        android:layout_marginTop="8dp"
         android:layout_marginLeft="10dp"
         android:id="@+id/txtdescripcion"/>
 
-    <Button
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No. Cita"
+        android:layout_below="@+id/lbldescripcion"
+        android:textSize="22sp"
+        android:textColor="#000"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/lblcita"/>
+
+    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="Numero"
+        android:textSize="22sp"
+        android:layout_below="@+id/txtdescripcion"
+        android:layout_toEndOf="@+id/lblcita"
+        android:layout_marginLeft="10dp"
+        android:inputType="number"
+        android:id="@+id/txtnocita"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:width="150dp"
         android:text="Agregar"
-        android:textSize="10sp"
-        android:layout_marginTop="30dp"
+        android:textSize="17sp"
+        android:layout_marginTop="60dp"
+        android:layout_marginLeft="10dp"
         android:background="@drawable/btn_uno"
         android:textColor="@drawable/txt_btn_uno"
         android:layout_below="@+id/txtdescripcion"
         android:id="@+id/agregar"/>
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Eliminar"
-        android:textSize="10sp"
+        android:width="150dp"
+        android:textSize="17sp"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/btn_uno"
+        android:textColor="@drawable/txt_btn_uno"
+        android:layout_toEndOf="@+id/agregar"
+        android:layout_below="@+id/txtnocita"
+        android:id="@+id/eliminar"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Buscar"
+        android:width="150dp"
+        android:textSize="17sp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
         android:background="@drawable/btn_uno"
         android:textColor="@drawable/txt_btn_uno"
         android:layout_below="@+id/agregar"
-        android:id="@+id/eliminar"/>
+        android:id="@+id/buscar"/>
+
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:width="150dp"
         android:text="Actualizar"
-        android:textSize="10sp"
+        android:textSize="17sp"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
         android:background="@drawable/btn_uno"
         android:textColor="@drawable/txt_btn_uno"
-        android:layout_below="@+id/eliminar"
+        android:layout_below="@+id/agregar"
+        android:layout_toEndOf="@+id/buscar"
         android:id="@+id/actualizar"/>
 
 
