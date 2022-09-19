@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import mx.edu.ittepic.ladm_u1_practica2_almacenamientoarchivosplanos.databinding.ActivityMainBinding
 import mx.edu.ittepic.ladm_u1_practica2_almacenamientoarchivosplanos.databinding.CardLayoutBinding
@@ -22,6 +23,7 @@ import java.text.FieldPosition
      val descripcion = arrayOf("det 1", "det 2", "det 3", "det 4")
          // = intArrayOf(R.drawable.citas, R.drawable.citas, R.drawable.citas, R.drawable.citas)
 
+     public var citas = arrayOf("")
 
 
      class ViewHolder(val binding: CardLayoutBinding): RecyclerView.ViewHolder(binding.root){
@@ -33,6 +35,17 @@ import java.text.FieldPosition
 
      override fun onBindViewHolder(holder: ViewHolder, i: Int) {
          abrirArchivo()
+
+        try {
+            val cita = citas[i].toString().split("\\|")
+
+            pacientes[i] = cita[0]
+            edad[i] = cita[1]
+            descripcion[i] = cita[2]
+        }
+        catch (e:Exception){
+
+        }
 
          holder.binding.itemTitle.text = pacientes[i]
          holder.binding.itemDetail.text = edad[i]
@@ -57,17 +70,19 @@ import java.text.FieldPosition
                  fileContents = fileContent.toString()
              }
 
-             val citas = fileContents.split("-")
+              citas = fileContents.split("-").toTypedArray()
              println( "citas: " + citas)
+
+
+/*
              for(i in citas.indices){
                  val cita = citas[i].toString().split("\\|")
-                 println(cita)
+                 println(cita.size)
                  pacientes[i] = cita[0]
                  edad[i] = cita[1]
                  descripcion[i] = cita[2]
                  println("cit: $cita")
-             }
-
+             }*/
          }
          catch (e:Exception){
 
