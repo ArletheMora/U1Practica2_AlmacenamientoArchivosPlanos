@@ -99,7 +99,7 @@ class HomeFragment : Fragment() {
                     binding.txtdescripcion.setText(descripciones[Integer.parseInt(binding.txtnocita.text.toString())])
                 }
             }catch (e: Exception){
-                Toast.makeText(context, "No se ingreso No. de Cita", Toast.LENGTH_LONG)
+                Toast.makeText(context, "No se ingresó No. de Cita", Toast.LENGTH_LONG)
                     .show()
             }
 
@@ -107,18 +107,26 @@ class HomeFragment : Fragment() {
         }
 
         binding.actualizar.setOnClickListener {
-            cad1 = binding.txtnombre.text.toString()
-            cad2 = binding.txtedad.text.toString()
-            cad3 = binding.txtdescripcion.text.toString()
-            nombres[Integer.parseInt(binding.txtnocita.text.toString())]=cad1
-            edades[Integer.parseInt(binding.txtnocita.text.toString())]=cad2
-            descripciones[Integer.parseInt(binding.txtnocita.text.toString())]=cad3
-            view?.let { it1 ->
-                Snackbar.make(it1, "Se actualizo el registro", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
-            }
 
-            borrar()
+            try {
+                cad1 = binding.txtnombre.text.toString()
+                cad2 = binding.txtedad.text.toString()
+                cad3 = binding.txtdescripcion.text.toString()
+                nombres[Integer.parseInt(binding.txtnocita.text.toString())]=cad1
+                edades[Integer.parseInt(binding.txtnocita.text.toString())]=cad2
+                descripciones[Integer.parseInt(binding.txtnocita.text.toString())]=cad3
+                view?.let { it1 ->
+                    Snackbar.make(it1, "Se actualizo el registro", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show()
+                }
+
+                borrar()
+            }catch (e: Exception){
+            Toast.makeText(context, "No se ingresó No. de Cita", Toast.LENGTH_LONG)
+                .show()
+        }
+
+
         }
 
         binding.eliminar.setOnClickListener {

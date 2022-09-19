@@ -1,5 +1,6 @@
 package mx.edu.ittepic.ladm_u1_practica2_almacenamientoarchivosplanos
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Environment
 import android.view.LayoutInflater
@@ -15,8 +16,9 @@ import mx.edu.ittepic.ladm_u1_practica2_almacenamientoarchivosplanos.ui.home.Hom
 import java.io.*
 import java.lang.Exception
 import java.text.FieldPosition
+import kotlin.coroutines.coroutineContext
 
- class CustomAdapter: RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+class CustomAdapter: RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
      val pacientes = arrayOf("title 1", "title 2", "title 3", "title 4")
      val edad = arrayOf("det 1", "det 2", "det 3", "det 4")
