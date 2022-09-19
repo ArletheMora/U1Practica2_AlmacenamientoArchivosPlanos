@@ -17,6 +17,7 @@ import mx.edu.ittepic.ladm_u1_practica2_almacenamientoarchivosplanos.MainActivit
 import mx.edu.ittepic.ladm_u1_practica2_almacenamientoarchivosplanos.databinding.FragmentHomeBinding
 import java.io.*
 import java.lang.Exception
+import java.io.FileReader
 
 
 class HomeFragment : Fragment() {
@@ -73,7 +74,7 @@ class HomeFragment : Fragment() {
             }
             borrar()
 
-            guardarEnArchivo( cad1 + "|" + cad2 + "|" + cad3 + "|" + cad4 +  "\n"  )
+            guardarEnArchivo( cad1 + "|" + cad2 + "|" + cad3 + "|" + cad4   )
 
             cont=cont+1
         }
@@ -144,19 +145,35 @@ class HomeFragment : Fragment() {
 
     fun guardarEnArchivo(mensaje:String){
         try {
+            var fileContents = ""
+
             //construir archivo
             var archivo = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).toString() + "/" + "datosCitas.txt"
 
             var file = File(archivo)
+
             if (!file.exists()) {       //si no existe se crea
                 file.createNewFile()
             }else{                      //si existe que actualice
 
+                val file1 = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS)
+                    .toString() + "/datosCitas.txt")
+
+                FileReader(file1).use {
+                    val chars = CharArray(file1.length().toInt())
+                    it.read(chars)
+                    val fileContent = String(chars)
+                    fileContents = fileContent.toString()
+                }
             }
 
             val fileWriter = FileWriter(file)
             val bufferedWriter = BufferedWriter(fileWriter)
-            bufferedWriter.write(mensaje)
+            if (fileContents != ""){
+                bufferedWriter.write(fileContents + "-" + mensaje)
+            }else{
+                bufferedWriter.write(mensaje)
+            }
             bufferedWriter.close()
 
             Toast.makeText(context, "GUARDADO", Toast.LENGTH_LONG)

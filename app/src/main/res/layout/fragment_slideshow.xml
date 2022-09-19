@@ -20,28 +20,27 @@
         />
 
     <TextView
+        android:id="@+id/lblequipo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Equipo de diseño y desarrollo"
-        android:textSize="30sp"
-        android:textColor="#3F51B5"
-        android:textStyle="bold"
-        android:layout_marginTop="20dp"
         android:layout_below="@+id/lblnosotros"
-        android:id="@+id/lblequipo"
-        />
+        android:layout_marginTop="20dp"
+        android:text="Equipo de diseño y desarrollo"
+        android:textColor="#3F51B5"
+        android:textSize="30sp"
+
+        android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/lblnombres"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Arlethe Monserrath  NC: 184011 \nMora Lizarraras
-                      \n\nHector Leopoldo  NC: 18401175\nPerez Cruz                        "
-        android:textSize="20sp"
-        android:textColor="#000000"
-        android:layout_marginTop="10dp"
         android:layout_below="@+id/lblequipo"
-        android:id="@+id/lblnombres"
-        />
+        android:layout_marginTop="10dp"
+        android:text="Arlethe Monserrat  NC: 18401160 \nMora Lizarrarás
+                      \n\nHector Leopoldo  NC: 18401175\nPerez Cruz                        "
+        android:textColor="#000000"
+        android:textSize="20sp" />
 
     <TextView
         android:layout_width="match_parent"
@@ -52,6 +51,7 @@
         android:textStyle="bold"
         android:layout_marginTop="20dp"
         android:layout_below="@+id/lblnombres"
+        android:textAlignment="center"
         android:id="@+id/lblinstitucion"
         />
 
@@ -63,6 +63,7 @@
         android:textColor="#000000"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/lblinstitucion"
+        android:textAlignment="center"
         android:id="@+id/lbltec"
         />
 
@@ -71,6 +72,7 @@
         android:layout_height="200dp"
         android:layout_below="@+id/lbltec"
         android:layout_marginLeft="80dp"
-        android:src="@drawable/escudo_itt_grande"/>
+        android:layout_marginTop="50dp"
+        android:src="@drawable/escudo_itt_grande" />
 
 </RelativeLayout>

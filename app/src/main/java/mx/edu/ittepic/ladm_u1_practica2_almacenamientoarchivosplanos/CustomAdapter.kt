@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import mx.edu.ittepic.ladm_u1_practica2_almacenamientoarchivosplanos.databinding.ActivityMainBinding
 import mx.edu.ittepic.ladm_u1_practica2_almacenamientoarchivosplanos.databinding.CardLayoutBinding
 import mx.edu.ittepic.ladm_u1_practica2_almacenamientoarchivosplanos.ui.home.HomeFragment
+import java.io.*
+import java.lang.Exception
 import java.text.FieldPosition
 
  class CustomAdapter: RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
@@ -35,25 +37,16 @@ import java.text.FieldPosition
      override fun getItemCount(): Int {
          return titles.size
      }
-    /*override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ViewHolder {
-        //val v = LayoutInflater.from(viewGroup.context).inflate((R.layout.card_layout))
-        //return ViewHolder(v)
-        super.onCreateViewHolder(ViewHolder)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-    }
-    override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, i: Int){
-        viewHolder.itemTitle.text = titles[i]
-    }
 
-    inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        var itemImage: ImageView
-        var itemTitle: TextView
-        var itemDetail: TextView
+     /*fun abrirArchivo(){
+         try{
+            val miCarpeta = File("Documents", "datosCitas.txt")
+             val fichero = BufferedReader(FileInputStream(InputStream(miCarpeta)))
 
-        init {
-            itemImage =
-        }
-    }*/
+         }
+         catch (e:Exception){
+
+         }
+     }*/
 
 }
