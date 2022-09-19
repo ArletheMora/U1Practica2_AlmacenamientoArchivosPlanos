@@ -1,16 +1,22 @@
 package mx.edu.ittepic.ladm_u1_practica2_almacenamientoarchivosplanos.ui.home
 
+import android.app.Activity
+import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import android.os.Bundle
+import android.os.Environment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import mx.edu.ittepic.ladm_u1_practica2_almacenamientoarchivosplanos.MainActivity
 import mx.edu.ittepic.ladm_u1_practica2_almacenamientoarchivosplanos.databinding.FragmentHomeBinding
-
+import java.io.*
+import java.lang.Exception
 
 
 class HomeFragment : Fragment() {
@@ -32,6 +38,7 @@ class HomeFragment : Fragment() {
     var cad1: String = ""
     var cad2: String = ""
     var cad3: String = ""
+    var cad4: String = ""
     var cont = 1
 
 
@@ -49,10 +56,13 @@ class HomeFragment : Fragment() {
         val root: View = binding.root
 
         //metodo agregar-----------------------------
+
+        /*HACER LECTURA ANTES */
         binding.agregar.setOnClickListener {
             cad1 = binding.txtnombre.text.toString()
             cad2 = binding.txtedad.text.toString()
             cad3 = binding.txtdescripcion.text.toString()
+            cad4 = binding.txtnocita.text.toString()
             nombres[cont]=cad1
             edades[cont]=cad2
             descripciones[cont]=cad3
@@ -62,27 +72,36 @@ class HomeFragment : Fragment() {
                     .setAction("Action", null).show()
             }
             borrar()
+
+            guardarEnArchivo( cad1 + "|" + cad2 + "|" + cad3 + "|" + cad4 +  "\n"  )
+
             cont=cont+1
         }
         //-------------------------------------------------------------
 
 
         binding.buscar.setOnClickListener {
-            if(binding.txtnocita.equals("")){
-                view?.let { it1 ->
-                    Snackbar.make(it1, "No se ingreso No. de Cita", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show()
+            try{
+                if(binding.txtnocita.equals("")){
+                    view?.let { it1 ->
+                        Snackbar.make(it1, "No se ingreso No. de Cita", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show()
+                    }
+                }else if(nombres[Integer.parseInt(binding.txtnocita.text.toString())].equals("") || edades[Integer.parseInt(binding.txtnocita.text.toString())].equals("") || descripciones[Integer.parseInt(binding.txtnocita.text.toString())].equals("")){
+                    view?.let { it1 ->
+                        Snackbar.make(it1, "No se encontro el registro", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show()
+                    }
+                }else{
+                    binding.txtnombre.setText(nombres[Integer.parseInt(binding.txtnocita.text.toString())])
+                    binding.txtedad.setText(edades[Integer.parseInt(binding.txtnocita.text.toString())])
+                    binding.txtdescripcion.setText(descripciones[Integer.parseInt(binding.txtnocita.text.toString())])
                 }
-            }else if(nombres[Integer.parseInt(binding.txtnocita.text.toString())].equals("") || edades[Integer.parseInt(binding.txtnocita.text.toString())].equals("") || descripciones[Integer.parseInt(binding.txtnocita.text.toString())].equals("")){
-                view?.let { it1 ->
-                    Snackbar.make(it1, "No se encontro el registro", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show()
-                }
-            }else{
-                binding.txtnombre.setText(nombres[Integer.parseInt(binding.txtnocita.text.toString())])
-                binding.txtedad.setText(edades[Integer.parseInt(binding.txtnocita.text.toString())])
-                binding.txtdescripcion.setText(descripciones[Integer.parseInt(binding.txtnocita.text.toString())])
+            }catch (e: Exception){
+                Toast.makeText(context, "No se ingreso No. de Cita", Toast.LENGTH_LONG)
+                    .show()
             }
+
 
         }
 
@@ -113,8 +132,6 @@ class HomeFragment : Fragment() {
 
         }
 
-
-
         return root
     }
 
@@ -124,6 +141,32 @@ class HomeFragment : Fragment() {
         binding.txtdescripcion.setText("")
         binding.txtnocita.setText("")
     }
+
+    fun guardarEnArchivo(mensaje:String){
+        try {
+            //construir archivo
+            var archivo = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS).toString() + "/" + "datosCitas.txt"
+
+            var file = File(archivo)
+            if (!file.exists()) {       //si no existe se crea
+                file.createNewFile()
+            }else{                      //si existe que actualice
+
+            }
+
+            val fileWriter = FileWriter(file)
+            val bufferedWriter = BufferedWriter(fileWriter)
+            bufferedWriter.write(mensaje)
+            bufferedWriter.close()
+
+            Toast.makeText(context, "GUARDADO", Toast.LENGTH_LONG)
+                .show()
+        }catch (e:Exception){
+            Toast.makeText(context, e.message, Toast.LENGTH_LONG)
+                .show()
+        }
+    }
+
 
 
     override fun onDestroyView() {

@@ -97,15 +97,15 @@
         android:id="@+id/lblcita"/>
 
     <EditText
+        android:id="@+id/txtnocita"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Numero"
-        android:textSize="22sp"
         android:layout_below="@+id/txtdescripcion"
-        android:layout_toEndOf="@+id/lblcita"
         android:layout_marginLeft="10dp"
+        android:layout_toEndOf="@+id/lblcita"
+        android:hint="Numero"
         android:inputType="number"
-        android:id="@+id/txtnocita"/>
+        android:textSize="22sp" />
 
     <Button
         android:layout_width="wrap_content"
