@@ -58,6 +58,7 @@
         android:layout_height="wrap_content"
         android:hint="Edad"
         android:textSize="22sp"
+        android:inputType="number"
         android:layout_below="@+id/txtnombre"
         android:layout_toEndOf="@+id/lbledad"
         android:layout_marginTop="2dp"
@@ -161,5 +162,12 @@
         android:layout_toEndOf="@+id/buscar"
         android:id="@+id/actualizar"/>
 
+    <ListView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/listacontactos"
+        android:layout_below="@id/actualizar"
+        android:layout_marginTop="30dp"
+        />
 
 </RelativeLayout>
