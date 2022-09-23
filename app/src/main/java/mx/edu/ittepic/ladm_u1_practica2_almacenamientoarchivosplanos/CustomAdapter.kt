@@ -38,38 +38,45 @@ class CustomAdapter: RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
      }
 
      override fun onBindViewHolder(holder: ViewHolder, i: Int) {
-         //abrirArchivo()
+         abrirArchivo()
          //Toast.makeText(holder.binding.root.context, "entró", Toast.LENGTH_LONG).show()
          guardarDesdeArchivo(holder)
-        try {
-            var temporal = listaRegistros[1].split("\n")
-            println("temporal: " +temporal)
+         for (l in listaRegistros.indices){
+             try {
+                 var temporal = listaRegistros[l].split("\n")
+                 println("listaREGISTROS  : " +listaRegistros.size)
+                 println("temporal "+ l +": " +temporal)
 
-            val cita = citas[i].split("\\|")
-            //pacientes[i] = cita[0]
-            //edad[i] = cita[1]
-            //descripcion[i] = cita[2]
+                 //val cita = citas[i].split("\\|")
+                 //pacientes[i] = cita[0]
+                 //edad[i] = cita[1]
+                 //descripcion[i] = cita[2]
 
-            pacientes[i] = temporal[0]
-            edad[i] = temporal[1]
-            descripcion[i] = temporal[2]
 
-            println("0"+temporal[0])
-            println(temporal[1])
-            println(temporal[2])
-        }
-        catch (e:Exception){
-        }
-         holder.binding.itemTitle.text = "gfsd"+pacientes[i]
-         holder.binding.itemEdad.text = edad[i]
-         holder.binding.itemDetail.text = descripcion[i]
-         holder.binding.itemImage.setImageResource(R.drawable.citas)
+                 println("pacientes "+ i +": " +pacientes[l])
+                 println("temporal[ "+ i +": " +temporal[l])
+                 pacientes[l] = temporal[0]
+                 edad[l] = temporal[1]
+                 descripcion[l] = temporal[2]
+
+                 println("0:"+temporal[0])
+                 println("1:"+ temporal[1])
+                 println("2:"+temporal[2])
+
+                 holder.binding.itemTitle.text = "gfsd"+pacientes[1]
+                 holder.binding.itemEdad.text = edad[1]
+                 holder.binding.itemDetail.text = descripcion[1]
+                 holder.binding.itemImage.setImageResource(R.drawable.citas)
+             }
+             catch (e:Exception){
+             }
+         }
      }
 
      override fun getItemCount(): Int {
-         //return pacientes.size
+         return pacientes.size
          //return listaRegistros.size
-         return listaRegistros.size
+         //return listaRegistros.size
      }
 
     private fun guardarDesdeArchivo(holder: ViewHolder) {
@@ -119,8 +126,8 @@ class CustomAdapter: RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
              var fileContents = ""
              val file1 = File(
                  Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS)
-                    // .toString() + "/datos.txt")
-                     .toString() + "/datosCitas.txt")
+                     .toString() + "/datos.txt")
+                    // .toString() + "/datosCitas.txt")
 
              FileReader(file1).use {
                  val chars = CharArray(file1.length().toInt())
