@@ -38,7 +38,7 @@ class CustomAdapter: RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
      }
 
      override fun onBindViewHolder(holder: ViewHolder, i: Int) {
-         abrirArchivo()
+         //abrirArchivo()
          //Toast.makeText(holder.binding.root.context, "entró", Toast.LENGTH_LONG).show()
          guardarDesdeArchivo(holder)
          for (l in listaRegistros.indices){
@@ -51,8 +51,6 @@ class CustomAdapter: RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
                  //pacientes[i] = cita[0]
                  //edad[i] = cita[1]
                  //descripcion[i] = cita[2]
-
-
                  println("pacientes "+ i +": " +pacientes[l])
                  println("temporal[ "+ i +": " +temporal[l])
                  pacientes[l] = temporal[0]
@@ -63,9 +61,9 @@ class CustomAdapter: RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
                  println("1:"+ temporal[1])
                  println("2:"+temporal[2])
 
-                 holder.binding.itemTitle.text = "gfsd"+pacientes[1]
-                 holder.binding.itemEdad.text = edad[1]
-                 holder.binding.itemDetail.text = descripcion[1]
+                 holder.binding.itemTitle.text = "nada"+pacientes[l]
+                 holder.binding.itemEdad.text = edad[l]
+                 holder.binding.itemDetail.text = descripcion[l]
                  holder.binding.itemImage.setImageResource(R.drawable.citas)
              }
              catch (e:Exception){
@@ -76,6 +74,7 @@ class CustomAdapter: RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
      override fun getItemCount(): Int {
          return pacientes.size
          //return listaRegistros.size
+         //println("tamaño: " +listaRegistros.size)
          //return listaRegistros.size
      }
 
