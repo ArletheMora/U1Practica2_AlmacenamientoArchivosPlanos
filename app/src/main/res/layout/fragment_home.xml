@@ -54,16 +54,16 @@
         android:id="@+id/lbledad"/>
 
     <EditText
+        android:id="@+id/txtedad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Edad"
-        android:textSize="22sp"
-        android:inputType="number"
         android:layout_below="@+id/txtnombre"
-        android:layout_toEndOf="@+id/lbledad"
-        android:layout_marginTop="2dp"
         android:layout_marginLeft="10dp"
-        android:id="@+id/txtedad"/>
+        android:layout_marginTop="2dp"
+        android:layout_toEndOf="@+id/lbledad"
+        android:hint="Edad"
+        android:inputType="number"
+        android:textSize="22sp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -104,7 +104,7 @@
         android:layout_below="@+id/txtdescripcion"
         android:layout_marginLeft="10dp"
         android:layout_toEndOf="@+id/lblcita"
-        android:hint="Numero"
+        android:hint="Número autogenerado"
         android:inputType="number"
         android:textSize="22sp" />
 

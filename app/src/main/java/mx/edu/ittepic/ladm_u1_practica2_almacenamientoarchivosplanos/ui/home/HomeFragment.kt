@@ -74,7 +74,6 @@ class HomeFragment : Fragment() {
                 )
                     .setAction("Action", null).show()
             }
-
             cont=cont+1
         }
         //-------------------------------------------------------------
