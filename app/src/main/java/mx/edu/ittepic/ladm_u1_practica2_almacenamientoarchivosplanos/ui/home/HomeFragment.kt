@@ -60,7 +60,7 @@ class HomeFragment : Fragment() {
 
         //metodo agregar-----------------------------
 
-        /*HACER LECTURA ANTES */
+
         binding.agregar.setOnClickListener {
             insertar()
             guardarEnArchivo()
@@ -81,51 +81,71 @@ class HomeFragment : Fragment() {
 
 
         binding.buscar.setOnClickListener {
-
-            guardarDesdeArchivo()
-            posicionActualizar = Integer.parseInt(binding.txtnocita.text.toString())
-            var temporal =
-                listaRegistros.get(Integer.parseInt(binding.txtnocita.text.toString()))
-                    .split("\n")
-            binding.txtnombre.setText(temporal[0])
-            binding.txtedad.setText(temporal[1])
-            binding.txtdescripcion.setText(temporal[2])
+            try{
+                guardarDesdeArchivo()
+                posicionActualizar = Integer.parseInt(binding.txtnocita.text.toString())
+                var temporal =
+                    listaRegistros.get(Integer.parseInt(binding.txtnocita.text.toString()))
+                        .split("\n")
+                binding.txtnombre.setText(temporal[0])
+                binding.txtedad.setText(temporal[1])
+                binding.txtdescripcion.setText(temporal[2])
+            }catch (e:Exception){
+                AlertDialog.Builder(binding.root.context)
+                    .setTitle("ERROR")
+                    .setMessage("Algo salió mal. Asegurate de tener registros almacenados y de haber escrito el número de cita a buscar")
+                    .show()
+            }
 
 
         }
 
         binding.actualizar.setOnClickListener {
-            posicionActualizar = Integer.parseInt(binding.txtnocita.text.toString())
-            if(posicionActualizar ==-1){//SI estamos en -1 no hemos activado la opcion de actualizacion
-                context?.let { it1 ->
-                    AlertDialog.Builder(it1)
-                        .setTitle("ERROR")
-                        .setMessage("NO SELECCIONO REGISTRO A ACTUALIZAR")
-                        .show()
+            try {
+                posicionActualizar = Integer.parseInt(binding.txtnocita.text.toString())
+                if(posicionActualizar ==-1){//SI estamos en -1 no hemos activado la opcion de actualizacion
+                    context?.let { it1 ->
+                        AlertDialog.Builder(it1)
+                            .setTitle("ERROR")
+                            .setMessage("NO SELECCIONO REGISTRO A ACTUALIZAR")
+                            .show()
+                    }
+                    //return@setOnClickListener
                 }
-                //return@setOnClickListener
+                var concatenacioon =
+                    binding.txtnombre.text.toString() + "\n" + binding.txtedad.text.toString() + "\n" + binding.txtdescripcion.text.toString()
+                listaRegistros.set(posicionActualizar, concatenacioon)
+                binding.listacontactos.adapter = ArrayAdapter<String>(
+                    binding.root.context,
+                    R.layout.simple_list_item_1, listaRegistros
+                )
+                //binding.txtnombre.setText("")
+                //binding.txtedad.setText("")
+                //binding.txtdescripcion.setText("")
+                posicionActualizar = -1
+                guardarEnArchivo()
+                borrar()
+
+            }catch (e:Exception){
+                AlertDialog.Builder(binding.root.context)
+                    .setTitle("Error")
+                    .setMessage("Algo salió mal. Asegurate de tener registros almacenados y de haber escrito el número de cita a buscar")
+                    .show()
             }
-            var concatenacioon =
-                binding.txtnombre.text.toString() + "\n" + binding.txtedad.text.toString() + "\n" + binding.txtdescripcion.text.toString()
-            listaRegistros.set(posicionActualizar, concatenacioon)
-            binding.listacontactos.adapter = ArrayAdapter<String>(
-                binding.root.context,
-                R.layout.simple_list_item_1, listaRegistros
-            )
-            //binding.txtnombre.setText("")
-            //binding.txtedad.setText("")
-            //binding.txtdescripcion.setText("")
-            posicionActualizar = -1
-            guardarEnArchivo()
-            borrar()
 
         }
 
         binding.eliminar.setOnClickListener {
-
-            listaRegistros.removeAt(Integer.parseInt(binding.txtnocita.text.toString()))
-            guardarEnArchivo()
-            borrar()
+            try{
+                listaRegistros.removeAt(Integer.parseInt(binding.txtnocita.text.toString()))
+                guardarEnArchivo()
+                borrar()
+            }catch (e:Exception){
+                AlertDialog.Builder(binding.root.context)
+                    .setTitle("ERROR")
+                    .setMessage("Algo salió mal. Asegurate de tener registros almacenados y de haber escrito el número de cita a eliminar")
+                    .show()
+            }
 
         }
 
