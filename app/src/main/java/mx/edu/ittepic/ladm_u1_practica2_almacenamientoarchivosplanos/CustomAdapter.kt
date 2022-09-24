@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import mx.edu.ittepic.ladm_u1_practica2_almacenamientoarchivosplanos.databinding.ActivityMainBinding
 import mx.edu.ittepic.ladm_u1_practica2_almacenamientoarchivosplanos.databinding.CardLayoutBinding
+import mx.edu.ittepic.ladm_u1_practica2_almacenamientoarchivosplanos.databinding.FragmentGalleryBinding
 import mx.edu.ittepic.ladm_u1_practica2_almacenamientoarchivosplanos.ui.home.HomeFragment
 import java.io.*
 import java.lang.Exception
@@ -22,72 +23,31 @@ import kotlin.coroutines.coroutineContext
 
 class CustomAdapter: RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
-     val pacientes = arrayOf("")//arrayOf("title 1", "title 2", "title 3", "title 4")
-     val edad = arrayOf("")//arrayOf("det 1", "det 2", "det 3", "det 4")
-     val descripcion = arrayOf("")//arrayOf("det 1", "det 2", "det 3", "det 4")
-         // = intArrayOf(R.drawable.citas, R.drawable.citas, R.drawable.citas, R.drawable.citas)
     var listaRegistros = ArrayList<String>()
+    val pacientes = arrayOfNulls<String>(2)
+    val edad = arrayOfNulls<String>(2)
+    val descripcion = arrayOfNulls<String>(2)
+    var cont =0
+    // = intArrayOf(R.drawable.citas, R.drawable.citas, R.drawable.citas, R.drawable.citas)
 
-     public var citas = arrayOf("")
 
-     class ViewHolder(val binding: CardLayoutBinding): RecyclerView.ViewHolder(binding.root){
-     }
 
-     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-         return ViewHolder(CardLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false))
-     }
+    class ViewHolder(val binding: CardLayoutBinding): RecyclerView.ViewHolder(binding.root){
+    }
 
-     override fun onBindViewHolder(holder: ViewHolder, i: Int) {
-         //abrirArchivo()
-         //Toast.makeText(holder.binding.root.context, "entró", Toast.LENGTH_LONG).show()
-         guardarDesdeArchivo(holder)
-         for (l in listaRegistros.indices){
-             try {
-                 var temporal = listaRegistros[l].split("\n")
-                 println("listaREGISTROS  : " +listaRegistros.size)
-                 println("temporal "+ l +": " +temporal)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder(CardLayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+    }
 
-                 //val cita = citas[i].split("\\|")
-                 //pacientes[i] = cita[0]
-                 //edad[i] = cita[1]
-                 //descripcion[i] = cita[2]
-                 println("pacientes "+ i +": " +pacientes[l])
-                 println("temporal[ "+ i +": " +temporal[l])
-                 pacientes[l] = temporal[0]
-                 edad[l] = temporal[1]
-                 descripcion[l] = temporal[2]
+    override fun onBindViewHolder(holder: ViewHolder, i: Int) {
+        //abrirArchivo()
 
-                 println("0:"+temporal[0])
-                 println("1:"+ temporal[1])
-                 println("2:"+temporal[2])
-
-                 holder.binding.itemTitle.text = "nada"+pacientes[l]
-                 holder.binding.itemEdad.text = edad[l]
-                 holder.binding.itemDetail.text = descripcion[l]
-                 holder.binding.itemImage.setImageResource(R.drawable.citas)
-             }
-             catch (e:Exception){
-             }
-         }
-     }
-
-     override fun getItemCount(): Int {
-         return pacientes.size
-         //return listaRegistros.size
-         //println("tamaño: " +listaRegistros.size)
-         //return listaRegistros.size
-     }
-
-    private fun guardarDesdeArchivo(holder: ViewHolder) {
-        Toast.makeText(holder.binding.root.context, "entró", Toast.LENGTH_LONG)
-            .show()
         try {
-            //println( "ENTRÓ " )
-            //Toast.makeText(holder.binding.root.context, "entró", Toast.LENGTH_LONG).show()
-
-            var archivo = BufferedReader(InputStreamReader(
-                holder.binding.root.context.openFileInput("datos.txt")
-            ))
+            var archivo = BufferedReader(
+                InputStreamReader(
+                    holder.binding.root.context.openFileInput("datos.txt")
+                )
+            )
 
             var bufferContenido = ""
 
@@ -100,57 +60,37 @@ class CustomAdapter: RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
             //vector para tener la  lista de contactos
             var vector = bufferContenido.split("&&")
-
             listaRegistros.clear()
 
             for (v in vector){
-                println( "citas: " + v)
                 listaRegistros.add(v)
+
             }
-            //holder.binding.listacontactos.adapter =  ArrayAdapter<String>(binding.root.context,
-              //  android.R.layout.simple_list_item_1, listaRegistros)
+            /*holder.binding.listaPrueba.adapter =  ArrayAdapter<String>(binding.root.context,
+                android.R.layout.simple_list_item_1, listaRegistros)*/
 
         }catch (e:Exception){
-                AlertDialog.Builder(holder.binding.root.context)
-                    .setTitle("Error")
-                    .setMessage(e.message)
-                    .setPositiveButton("OK"){d, i->}
-                    .show()
-            }
+            //mensaje error
         }
 
+        //for(n in 0..1){
+            //esto es para obtener el texto de cada registro del txt
+            var temporal = listaRegistros.get(i).split("\n")
+            pacientes[cont]=temporal[0]
+            edad[cont]=temporal[1]
+            descripcion[cont]=temporal[2]
+            cont++
+        //}
 
-     fun abrirArchivo(){
-         try{
-             var fileContents = ""
-             val file1 = File(
-                 Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS)
-                     .toString() + "/datos.txt")
-                    // .toString() + "/datosCitas.txt")
+        holder.binding.itemTitle.text = pacientes.get(i)
+        holder.binding.itemDetail.text = edad.get(i)
+        holder.binding.itemImage.setImageResource(R.drawable.citas)
+    }
 
-             FileReader(file1).use {
-                 val chars = CharArray(file1.length().toInt())
-                 it.read(chars)
-                 val fileContent = String(chars)
-                 fileContents = fileContent.toString()
-             }
+    override fun getItemCount(): Int {
+        return pacientes.size
+    }
 
-              citas = fileContents.split("-").toTypedArray()
-             //println( "citas: " + citas)
 
-/*
-             for(i in citas.indices){
-                 val cita = citas[i].toString().split("\\|")
-                 println(cita.size)
-                 pacientes[i] = cita[0]
-                 edad[i] = cita[1]
-                 descripcion[i] = cita[2]
-                 println("cit: $cita")
-             }*/
-         }
-         catch (e:Exception){
-
-         }
-     }
 
 }
