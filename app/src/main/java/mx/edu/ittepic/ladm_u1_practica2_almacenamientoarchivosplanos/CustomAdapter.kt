@@ -21,13 +21,16 @@ import java.lang.Exception
 import java.text.FieldPosition
 import kotlin.coroutines.coroutineContext
 
+
 class CustomAdapter: RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
     var listaRegistros = ArrayList<String>()
-    val pacientes = arrayOfNulls<String>(2)
-    val edad = arrayOfNulls<String>(2)
-    val descripcion = arrayOfNulls<String>(2)
+    val pacientes = arrayOfNulls<String>(10)
+    val edad = arrayOfNulls<String>(10)
+    val descripcion = arrayOfNulls<String>(10)
+
     var cont =0
+
     // = intArrayOf(R.drawable.citas, R.drawable.citas, R.drawable.citas, R.drawable.citas)
 
 
@@ -64,7 +67,6 @@ class CustomAdapter: RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
             for (v in vector){
                 listaRegistros.add(v)
-
             }
             /*holder.binding.listaPrueba.adapter =  ArrayAdapter<String>(binding.root.context,
                 android.R.layout.simple_list_item_1, listaRegistros)*/
@@ -82,13 +84,15 @@ class CustomAdapter: RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
             cont++
         //}
 
-        holder.binding.itemTitle.text = pacientes.get(i)
-        holder.binding.itemDetail.text = edad.get(i)
+        holder.binding.itemTitle.text = "Nombre: "+pacientes.get(i)
+        holder.binding.itemEdad.text = "Edad: "+edad.get(i)
+        holder.binding.itemDetail.text = "Motivo: "+descripcion.get(i)
         holder.binding.itemImage.setImageResource(R.drawable.citas)
     }
 
     override fun getItemCount(): Int {
-        return pacientes.size
+
+        return GlobalVariable.valor
     }
 
 

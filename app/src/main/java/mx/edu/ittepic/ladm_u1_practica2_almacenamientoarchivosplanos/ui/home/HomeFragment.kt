@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
+import mx.edu.ittepic.ladm_u1_practica2_almacenamientoarchivosplanos.GlobalVariable
 import mx.edu.ittepic.ladm_u1_practica2_almacenamientoarchivosplanos.MainActivity
 import mx.edu.ittepic.ladm_u1_practica2_almacenamientoarchivosplanos.databinding.FragmentHomeBinding
 import java.io.*
@@ -34,6 +35,7 @@ class HomeFragment : Fragment() {
 
 
     //Arreglo para datos------------------
+
     var listaRegistros = ArrayList<String>()
     var posicionActualizar = -1
 
@@ -62,6 +64,7 @@ class HomeFragment : Fragment() {
 
 
         binding.agregar.setOnClickListener {
+
             insertar()
             guardarEnArchivo()
             borrar()
@@ -75,6 +78,9 @@ class HomeFragment : Fragment() {
                     .setAction("Action", null).show()
             }
             cont=cont+1
+
+            GlobalVariable.valor = listaRegistros.size
+
         }
         //-------------------------------------------------------------
 
@@ -139,6 +145,7 @@ class HomeFragment : Fragment() {
                 listaRegistros.removeAt(Integer.parseInt(binding.txtnocita.text.toString()))
                 guardarEnArchivo()
                 borrar()
+                GlobalVariable.valor = listaRegistros.size
             }catch (e:Exception){
                 AlertDialog.Builder(binding.root.context)
                     .setTitle("ERROR")
